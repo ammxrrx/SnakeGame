@@ -12,7 +12,7 @@ public:
 
     char get(int i, int j) const;
     char** getArr() const; // for direct access if needed
-    void setRandomApples();
+    void setRandomApples(); //for apples
     void snakeSpawn();
     void print() const;
 };
