@@ -66,6 +66,15 @@ char** Map::getArr() const {
     return arr;
 }
 
+int Map::getxIndex() {
+    return snakeX;
+}
+
+int Map::getYIndex() {
+    return snakeY;
+}
+
+
 void Map::print() const {
     for (int i = 0; i < row_size; i++) {
         for (int j = 0; j < col_size; j++) {
@@ -97,6 +106,7 @@ void Map::setRandomApples() {
     }
 }
 
+
 void Map::snakeSpawn() {
     int x, y;
     do {
@@ -105,5 +115,42 @@ void Map::snakeSpawn() {
     } while (arr[x][y] != ' ');
 
     arr[x][y] = 'T';
+    snakeX = x;
+    snakeY = y;
+}
+bool Map::moveSnake(int newX, int newY, bool& ateApple) {
+    ateApple = false;
+
+    // Out-of-bounds
+    if (newX < 0 || newX >= row_size || newY < 0 || newY >= col_size)
+        return false;
+
+    // Collision with wall
+    if (arr[newX][newY] == '|' || arr[newX][newY] == '-')
+        return false;
+
+    // Check for apple before overwriting
+    if (arr[newX][newY] == 'o') {
+        ateApple = true;
+    }
+
+    // Clear old position
+    arr[snakeX][snakeY] = ' ';
+
+    // Update position
+    snakeX = newX;
+    snakeY = newY;
+    arr[snakeX][snakeY] = 'T';
+
+    return true;
 }
 
+
+bool Map::checkAppleEat() {
+    if (arr[snakeX][snakeY] == 'o')
+    {
+        cout << "Scored Point!" << endl;
+        return true;
+    }
+    return false;
+}
