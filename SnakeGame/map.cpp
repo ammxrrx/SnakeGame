@@ -2,13 +2,10 @@
 #include <iostream>
 #include <windows.h> // for SetConsoleTextAttribute
 #include <cstdlib>
+#include "utils.h"
+
 #include <ctime>
 using namespace std;
-
-void setColor(int color) {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, color);
-}
 
 
 Map::Map(int rows, int cols) {
@@ -33,7 +30,7 @@ Map::Map(int rows, int cols) {
 
     for (int i = 0; i < row_size; i++)
     {
-        arr[i][col_size -1] = '|';
+        arr[i][col_size - 1] = '|';
     }
     for (int i = 0; i < col_size; i++)
     {
@@ -41,14 +38,11 @@ Map::Map(int rows, int cols) {
     }
     for (int i = 0; i < col_size; i++)
     {
-        arr[row_size-1][i] = '-';
+        arr[row_size - 1][i] = '-';
     }
     srand(time(0)); // seed only once   
     setRandomApples();
     snakeSpawn();
-    
-        print();
-    
 }
 
 Map::~Map() {
@@ -96,7 +90,7 @@ void Map::print() const {
 
 void Map::setRandomApples() {
     int x, y;
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 2; i++)
     {
         do {
             x = 1 + rand() % (row_size - 2);
@@ -149,8 +143,20 @@ bool Map::moveSnake(int newX, int newY, bool& ateApple) {
 bool Map::checkAppleEat() {
     if (arr[snakeX][snakeY] == 'o')
     {
-        cout << "Scored Point!" << endl;
         return true;
     }
     return false;
+}
+
+bool Map::checkAppleEnd() {
+    for (int i = 0; i <row_size ; i++)
+    {
+        for (int j = 0; j < col_size; j++) {
+            if (arr[i][j]=='o')
+            {
+                return false;
+            }
+        }
+    }
+    return true;
 }

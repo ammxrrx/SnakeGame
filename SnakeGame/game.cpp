@@ -5,10 +5,15 @@
 #include <ctime>
 using namespace std;
 
-Game::Game(){
+Game::Game() {
+
 }
 
 void Game::run() {
+    men1.displayTitle();
+    men1.displayMenu();
+    m1.print();
+
     char ch;
     char ch2 = ' ';
     int x, y;
@@ -40,7 +45,7 @@ void Game::run() {
         if (!moved) {
             system("cls");
             m1.print();
-            cout << "\nGAME OVER\n";
+            men1.gameOver();
             cout << "Final Score: " << p1.getScore() << endl;
             break;
         }
@@ -49,6 +54,11 @@ void Game::run() {
         if (apple) {
             p1.addScore(5);
             apple = false;
+            if (m1.checkAppleEnd() == true)
+            {
+                men1.gameOver();
+                break;
+            }
         }
 
         // Draw
