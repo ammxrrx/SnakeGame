@@ -1,10 +1,6 @@
 #include "SnakeGame.h"
-#include<iostream>
-#include <conio.h>
-#include "utils.h"
 
-#include <Windows.h>
-using namespace std;
+
 
 const int ENTER = 13;
 const int KEY_DOWN = 80;

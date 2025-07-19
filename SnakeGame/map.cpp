@@ -1,11 +1,4 @@
 #include "SnakeGame.h"
-#include <iostream>
-#include <windows.h> // for SetConsoleTextAttribute
-#include <cstdlib>
-#include "utils.h"
-
-#include <ctime>
-using namespace std;
 
 
 Map::Map(int rows, int cols) {
@@ -43,6 +36,19 @@ Map::Map(int rows, int cols) {
     srand(time(0)); // seed only once   
     setRandomApples();
     snakeSpawn();
+    Texture imgText;
+    if (!(imgText.loadFromFile("textures.png")))
+    {
+        cout << "No Pic" << endl;
+    }
+    Snake.setTexture(imgText);
+    Apple.setTexture(imgText);
+    Background.setTexture(imgText);
+    Wall.setTexture(imgText);
+    Snake.setTextureRect(IntRect(0,32,32,32));
+    Apple.setTextureRect(IntRect(32, 0, 32, 32));
+    Background.setTextureRect(IntRect(0, 0, 32, 32));
+    Wall.setTextureRect(IntRect(32, 32, 32, 32));
 }
 
 Map::~Map() {
@@ -68,6 +74,34 @@ int Map::getYIndex() {
     return snakeY;
 }
 
+void Map::printSFML(RenderWindow &obj) {
+    for (int i = 0; i < row_size; i++)
+    {
+        for (int j = 0; j < col_size; j++) {
+            Snake.setPosition(j * 32, i * 32);
+            Apple.setPosition(j * 32, i * 32);
+            Background.setPosition(j * 32, i * 32);
+            Wall.setPosition(j * 32, i * 32);
+            obj.draw(Background);
+            if (arr[i][j]=='T')
+            {
+                obj.draw(Snake);
+            }
+            else if (arr[i][j]=='o')
+            {
+                obj.draw(Apple);
+            }
+            else if (arr[i][j]=='|')
+            {
+                obj.draw(Wall);
+            }
+            else if (arr[i][j] == '-')
+            {
+                obj.draw(Wall);
+            }
+        }
+    }
+}
 
 void Map::print() const {
     for (int i = 0; i < row_size; i++) {

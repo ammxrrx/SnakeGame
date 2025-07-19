@@ -1,4 +1,12 @@
 #pragma once
+#include <iostream>
+#include <windows.h> // for SetConsoleTextAttribute
+#include <cstdlib>
+#include <SFML/Graphics.hpp>
+#include <conio.h>
+#include "utils.h"
+using namespace sf;
+using namespace std;
 
 class Map {
 private:
@@ -6,11 +14,15 @@ private:
 
 public:
     char** arr;
+    Sprite Snake;
+    Sprite Apple;
+    Sprite Wall;
+    Sprite Background;
     int row_size;
     int col_size;
     int snakeX;
     int snakeY;
-    Map(int rows = 25, int cols = 50);
+    Map(int rows = 25, int cols = 30);
     ~Map();
     int getxIndex();
     int getYIndex();
@@ -22,7 +34,9 @@ public:
     bool checkAppleEat();
     bool checkAppleEnd();
     void print() const;
+    void printSFML(RenderWindow& obj);
 };
+
 
 class player {
 public:

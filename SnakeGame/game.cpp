@@ -1,9 +1,5 @@
 #include "SnakeGame.h"
-#include <iostream>
-#include <windows.h> // for SetConsoleTextAttribute
-#include <cstdlib>
-#include <ctime>
-using namespace std;
+
 
 //gameeee
 Game::Game() {
