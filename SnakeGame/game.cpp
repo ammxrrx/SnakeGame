@@ -1,15 +1,14 @@
 #include "SnakeGame.h"
 
-
 //gameeee
 Game::Game() {
 
 }
 
 void Game::run() {
-    men1.displayTitle();
-    men1.displayMenu();
-    m1.print();
+    //men1.displayTitle();
+    //men1.displayMenu();
+    //m1.print();
 
     char ch;
     char ch2 = ' ';
@@ -41,8 +40,8 @@ void Game::run() {
         // Collision = game over
         if (!moved) {
             system("cls");
-            m1.print();
-            men1.gameOver();
+            //m1.print();
+            //men1.gameOver();
             cout << "Final Score: " << p1.getScore() << endl;
             break;
         }
@@ -53,16 +52,16 @@ void Game::run() {
             apple = false;
             if (m1.checkAppleEnd() == true)
             {
-                men1.gameOver();
+                //men1.gameOver();
                 break;
             }
         }
 
         // Draw
         system("cls");
-        m1.print();
+        //m1.print();
         cout << "Score: " << p1.getScore() << endl;
 
-        Sleep(300);
+        //Sleep(300);
     }
 }

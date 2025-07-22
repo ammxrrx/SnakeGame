@@ -36,7 +36,6 @@ Map::Map(int rows, int cols) {
     srand(time(0)); // seed only once   
     setRandomApples();
     snakeSpawn();
-    Texture imgText;
     if (!(imgText.loadFromFile("textures.png")))
     {
         cout << "No Pic" << endl;
@@ -103,28 +102,28 @@ void Map::printSFML(RenderWindow &obj) {
     }
 }
 
-void Map::print() const {
-    for (int i = 0; i < row_size; i++) {
-        for (int j = 0; j < col_size; j++) {
-            char c = arr[i][j];
+//void Map::print() const {
+    //for (int i = 0; i < row_size; i++) {
+    //    for (int j = 0; j < col_size; j++) {
+    //        char c = arr[i][j];
 
-            if (c == 'o') setColor(10);          // green
-            else if (c == 'T') setColor(14);     // yellow
-            else if (c == '|' || c == '-') setColor(15); // white
-            else setColor(7);                    // default
+    //        if (c == 'o') setColor(10);          // green
+    //        else if (c == 'T') setColor(14);     // yellow
+    //        else if (c == '|' || c == '-') setColor(15); // white
+    //        else setColor(7);                    // default
 
 
-            cout << c;
-        }
-        cout << endl;
-    }
-    setColor(7); // Reset color after printing
-}
+    //        cout << c;
+    //    }
+    //    cout << endl;
+    //}
+    //setColor(7); // Reset color after printing
+//}
 
 
 void Map::setRandomApples() {
     int x, y;
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 8; i++)
     {
         do {
             x = 1 + rand() % (row_size - 2);

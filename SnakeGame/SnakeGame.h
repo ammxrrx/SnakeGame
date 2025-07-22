@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include <windows.h> // for SetConsoleTextAttribute
+//#include <windows.h> // for SetConsoleTextAttribute
 #include <cstdlib>
 #include <SFML/Graphics.hpp>
 #include <conio.h>
@@ -8,11 +8,14 @@
 using namespace sf;
 using namespace std;
 
-class Map {
-private:
+enum direction {
+    UP, DOWN, LEFT, RIGHT, ERROR
+};
 
+class Map {
 
 public:
+    Texture imgText;
     char** arr;
     Sprite Snake;
     Sprite Apple;
@@ -33,7 +36,7 @@ public:
     bool moveSnake(int newX, int newY, bool& ateApple);
     bool checkAppleEat();
     bool checkAppleEnd();
-    void print() const;
+    //void print() const;
     void printSFML(RenderWindow& obj);
 };
 
@@ -46,20 +49,21 @@ public:
     char getInput();
     int getScore();
     void addScore(int points);
+    direction getInputSFML(Event& obj);
 };
-class menu {
-public:
-    menu();
-    void credits();
-    void displayTitle();
-    void displayHelp();
-    void displayMenu();
-    void gameOver();
-};
+//class menu {
+//public:
+//    menu();
+//    void credits();
+//    void displayTitle();
+//    void displayHelp();
+//    void displayMenu();
+//    void gameOver();
+//};
 
 class Game {
 private:
-    menu men1;
+    //menu men1;
     Map m1;
     player p1;
 public:
